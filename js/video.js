@@ -1,12 +1,13 @@
 var video;
 
 window.addEventListener("load", function() {
-	console.log("Good job opening the window");
-	
+	console.log("Window loaded!");
+
 	video = document.getElementById("player1");
 	video.autoplay = false;
 	video.loop = false;
 
+	video.volume = 1.0;
 	updateVolumeDisplay();
 	
 	document.querySelector("#play").addEventListener("click", playVideo);
@@ -23,7 +24,7 @@ window.addEventListener("load", function() {
 function playVideo() {
 	console.log("Play Video");
 	video.play();
-	updateVolumeDisplay();
+	setTimeout(updateVolumeDisplay, 100);
 }
 
 function pauseVideo() {
@@ -64,8 +65,9 @@ function changeVolume() {
 }
 
 function updateVolumeDisplay() {
-	document.querySelector("#volume").textContent = Math.round(video.volume * 100) + "%";
-	document.querySelector("#slider").value = video.volume * 100;
+	const volumePercent = Math.round(video.volume * 100);
+	document.querySelector("#volume").textContent = volumePercent + "%";
+	document.querySelector("#slider").value = volumePercent;
 }
 
 function addOldSchool() {
