@@ -1,12 +1,12 @@
 var video;
 
 window.addEventListener("load", function() {
-	console.log("Window is opened!");
+	console.log("Good job opening the window");
 	
 	video = document.getElementById("player1");
 	video.autoplay = false;
 	video.loop = false;
-	
+
 	updateVolumeDisplay();
 	
 	document.querySelector("#play").addEventListener("click", playVideo);
@@ -55,6 +55,7 @@ function skipAhead() {
 function toggleMute() {
 	video.muted = !video.muted;
 	document.querySelector("#mute").textContent = video.muted ? "Unmute" : "Mute";
+	updateVolumeDisplay();
 }
 
 function changeVolume() {
@@ -64,6 +65,7 @@ function changeVolume() {
 
 function updateVolumeDisplay() {
 	document.querySelector("#volume").textContent = Math.round(video.volume * 100) + "%";
+	document.querySelector("#slider").value = video.volume * 100;
 }
 
 function addOldSchool() {
