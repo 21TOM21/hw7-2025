@@ -24,7 +24,7 @@ window.addEventListener("load", function() {
 function playVideo() {
 	console.log("Play Video");
 	video.play();
-	setTimeout(updateVolumeDisplay, 100);
+	updateVolumeDisplay();
 }
 
 function pauseVideo() {
@@ -66,8 +66,20 @@ function changeVolume() {
 
 function updateVolumeDisplay() {
 	const volumePercent = Math.round(video.volume * 100);
-	document.querySelector("#volume").textContent = volumePercent + "%";
-	document.querySelector("#slider").value = volumePercent;
+	const volumeElement = document.querySelector("#volume");
+	
+	if (volumeElement) {
+		volumeElement.textContent = volumePercent + "%";
+	} else {
+		console.error("Volume element not found!");
+	}
+	
+	const slider = document.querySelector("#slider");
+	if (slider) {
+		slider.value = volumePercent;
+	}
+	
+	console.log("Volume display updated to: " + volumePercent + "%");
 }
 
 function addOldSchool() {
